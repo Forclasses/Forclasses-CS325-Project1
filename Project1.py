@@ -18,3 +18,6 @@ output_file_path = "C:\CS325-Project1\output.txt"
 with open(output_file_path, 'w') as file:
     file.write(file_content)
 #this works wonderfully 
+
+#next step is to work out how to quirey phi3-mini and take that
+#result and send it to output.txt...
