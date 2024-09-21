@@ -11,4 +11,10 @@ file_path = "C:\CS325-Project1\input.txt"
 with open(file_path, 'r') as file:
     file_content = file.read()
 
-print(file_content) #making sure this functions
+#print(file_content) #making sure this functions
+
+output_file_path = "C:\CS325-Project1\output.txt"
+
+with open(output_file_path, 'w') as file:
+    file.write(file_content)
+#this works wonderfully 
