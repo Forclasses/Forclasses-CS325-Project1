@@ -10,13 +10,22 @@ file_path = "C:\CS325-Project1\input.txt"
 
 with open(file_path, 'r') as file:
     file_content = file.read()
-
+import ollama
+response = ollama.chat(model='phi3:mini', messages=[
+  {
+    'role': 'user',
+    'content': file_content,
+  },
+])
+print(response['message']['content'])#leaving this here for debugging
+#ollama_var= "ollama run phi3:mini"
+#print(ollama_var)
 #print(file_content) #making sure this functions
 
 output_file_path = "C:\CS325-Project1\output.txt"
 
 with open(output_file_path, 'w') as file:
-    file.write(file_content)
+    file.write(response['message']['content'])
 #this works wonderfully 
 
 #next step is to work out how to quirey phi3-mini and take that
