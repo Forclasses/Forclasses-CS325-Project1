@@ -20,4 +20,8 @@ response = requests.request(
 )
 
 # Print prettified response to stdout.
-pprint(response.json())
+print(response.json())
+# output_file_path = "C:\CS325-Project1\output1.txt"
+
+# with open(output_file_path, 'w') as file:
+   # file.write(response.jason)

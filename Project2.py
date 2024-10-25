@@ -63,7 +63,7 @@ def get_reviews(soup):
     return scraped_reviews
 
 def main():
-    search_url = "https://www.amazon.com/BERIBES-Cancelling-Transparent-Soft-Earpads-Charging-Black/product-reviews/B0CDC4X65Q/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+    search_url = "https://www.amazon.com/Thermalright-Peerless-SE-Aluminium-Technology/product-reviews/B09LGY38L4?reviewerType=all_reviews"
     soup = get_soup(search_url)
     data = get_reviews(soup)
     df = pd.DataFrame(data=data)
