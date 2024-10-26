@@ -21,31 +21,31 @@ def get_soup(url):
     return soup
 
 def get_reviews(soup):
-    review_elements = soup.select("div.review")
+    review_elements = soup.select("div.comments")
 
     scraped_reviews = []
 
     for review in review_elements:
-        r_author_element = review.select_one("span.a-profile-name")
+        r_author_element = review.select_one("div.comments-name")
         r_author = r_author_element.text if r_author_element else None
 
-        r_rating_element = review.select_one("i.review-rating")
-        r_rating = r_rating_element.text.replace("out of 5 stars", "") if r_rating_element else None
+        r_rating_element = review.select_one("i.review.rating-5")
+        r_rating = r_rating_element.text.replace("out of 5 eggs", "") if r_rating_element else None
 
-        r_title_element = review.select_one("a.review-title")
+        r_title_element = review.select_one("span.comments-title-content")
         r_title_span_element = r_title_element.select_one("span:not([class])") if r_title_element else None
         r_title = r_title_span_element.text if r_title_span_element else None
 
-        r_content_element = review.select_one("span.review-text")
+        r_content_element = review.select_one("div.comments-content")
         r_content = r_content_element.text if r_content_element else None
 
-        r_date_element = review.select_one("span.review-date")
+        r_date_element = review.select_one("span.comments-text")
         r_date = r_date_element.text if r_date_element else None
 
-        r_verified_element = review.select_one("span.a-size-mini")
+        r_verified_element = review.select_one("i.fa.fa-check-circle")
         r_verified = r_verified_element.text if r_verified_element else None
 
-        r_image_element = review.select_one("img.review-image-tile")
+        r_image_element = review.select_one("div.comments-img.is-img")
         r_image = r_image_element.attrs["src"] if r_image_element else None
 
         r = {
@@ -63,12 +63,12 @@ def get_reviews(soup):
     return scraped_reviews
 
 def main():
-    search_url = "https://www.amazon.com/Thermalright-Peerless-SE-Aluminium-Technology/product-reviews/B09LGY38L4?reviewerType=all_reviews"
+    search_url = "https://www.newegg.com/be-quiet-dark-rock-pro-5/p/13C-001F-00070"
     soup = get_soup(search_url)
     data = get_reviews(soup)
     df = pd.DataFrame(data=data)
 
-    df.to_csv("amz.csv")
+    df.to_csv("newegg.csv")
 
 if __name__ == '__main__':
     main()
